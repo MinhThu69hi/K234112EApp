@@ -1,5 +1,6 @@
 package com.lyminhthu.k234112eapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -35,5 +36,10 @@ public class MainActivity extends AppCompatActivity {
     public void click_say_hello(View view) {
         String hello=getString(R.string.str_click_me_to_say_hello);
         Toast.makeText(this,"hello K234112E",Toast.LENGTH_LONG).show();
+    }
+
+    public void open_calculator_app(View view) {
+        Intent intent=new Intent(MainActivity.this, CalculatorActivity.class);
+        startActivity(intent);
     }
 }

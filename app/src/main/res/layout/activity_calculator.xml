@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F3F7"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context=".CalculatorActivity">
+
+    <!-- KHU VỰC HIỂN THỊ KẾT QUẢ (Dùng CardView để tạo độ nổi) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:layout_marginBottom="15dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp">
+
+        <EditText
+            android:id="@+id/editFormula"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:fontFamily="sans-serif-light"
+            android:gravity="bottom|right"
+            android:hint="0"
+            android:inputType="text"
+            android:padding="20dp"
+            android:textColor="#2D3436"
+            android:textSize="48sp" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- THANH TRẠNG THÁI BỘ NHỚ (MEMORY) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="#E1E8F0"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txtMc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MC"
+            android:textAlignment="center"
+            android:textColor="#636E72"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtMr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MR"
+            android:textAlignment="center"
+            android:textColor="#636E72"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtMPlus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M+"
+            android:textAlignment="center"
+            android:textColor="#636E72"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txrMMinus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M-"
+            android:textAlignment="center"
+            android:textColor="#636E72"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtMs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MS"
+            android:textAlignment="center"
+            android:textColor="#636E72"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtM"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M"
+            android:textAlignment="center"
+            android:textColor="#FF9F43"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- BÀN PHÍM MÁY TÍNH -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <!-- HÀNG 1: Chức năng xóa -->
+        <TableRow android:layout_marginBottom="6dp">
+            <Button
+                android:id="@+id/btnprecent"
+                android:layout_margin="3dp"
+                android:backgroundTint="#D1D8E0"
+                android:text="%"
+                android:textColor="#2D3436" />
+            <Button
+                android:id="@+id/btnCe"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FF7675"
+                android:text="CE"
+                android:textColor="#FFFFFF" />
+            <Button
+                android:id="@+id/btnC"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FAB1A0"
+                android:text="C"
+                android:textColor="#FFFFFF" />
+            <Button
+                android:id="@+id/btnDel"
+                android:layout_margin="3dp"
+                android:backgroundTint="#D1D8E0"
+                android:text="DEL"
+                android:textColor="#2D3436" />
+        </TableRow>
+
+        <!-- HÀNG 2: Toán học nâng cao -->
+        <TableRow android:layout_marginBottom="6dp">
+            <Button
+                android:id="@+id/btn1x"
+                android:layout_margin="3dp"
+                android:backgroundTint="#ECF0F1"
+                android:text="1/x"
+                android:textColor="#2D3436" />
+            <Button
+                android:id="@+id/btnsq"
+                android:layout_margin="3dp"
+                android:backgroundTint="#ECF0F1"
+                android:text="x²"
+                android:textColor="#2D3436" />
+            <Button
+                android:id="@+id/btnsqrt"
+                android:layout_margin="3dp"
+                android:backgroundTint="#ECF0F1"
+                android:text="√"
+                android:textColor="#2D3436" />
+            <Button
+                android:id="@+id/btndevice"
+                android:layout_margin="3dp"
+                android:backgroundTint="#0984E3"
+                android:onClick="processInputData"
+                android:text=":"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
+        </TableRow>
+
+        <!-- HÀNG 3 -->
+        <TableRow android:layout_marginBottom="6dp">
+            <Button
+                android:id="@+id/btn7"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="7"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn8"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="8"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn9"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="9"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnmunti"
+                android:layout_margin="3dp"
+                android:backgroundTint="#0984E3"
+                android:onClick="processInputData"
+                android:text="*"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
+        </TableRow>
+
+        <!-- HÀNG 4 -->
+        <TableRow android:layout_marginBottom="6dp">
+            <Button
+                android:id="@+id/btn4"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="4"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn5"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="5"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn6"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="6"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnminus"
+                android:layout_margin="3dp"
+                android:backgroundTint="#0984E3"
+                android:onClick="processInputData"
+                android:text="-"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
+        </TableRow>
+
+        <!-- HÀNG 5 -->
+        <TableRow android:layout_marginBottom="6dp">
+            <Button
+                android:id="@+id/btn1"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="1"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn2"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="2"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btn3"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="3"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnplus"
+                android:layout_margin="3dp"
+                android:backgroundTint="#0984E3"
+                android:onClick="processInputData"
+                android:text="+"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
+        </TableRow>
+
+        <!-- HÀNG 6 -->
+        <TableRow>
+            <Button
+                android:id="@+id/btnplusminu"
+                android:layout_margin="3dp"
+                android:backgroundTint="#ECF0F1"
+                android:text="+/-"
+                android:textColor="#2D3436" />
+            <Button
+                android:id="@+id/btn0"
+                android:layout_margin="3dp"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="processInputData"
+                android:text="0"
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnDot"
+                android:layout_margin="3dp"
+                android:backgroundTint="#ECF0F1"
+                android:text="."
+                android:textColor="#2D3436"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/btnbalance"
+                android:layout_margin="3dp"
+                android:backgroundTint="#6C5CE7"
+                android:text="="
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
+        </TableRow>
+    </TableLayout>
+
+    <!-- KHU VỰC LỊCH SỬ (CardView bao bọc cho đẹp) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LỊCH SỬ TÍNH TOÁN"
+                android:textColor="#B2BEC3"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/txtHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4dp"
+                    android:text="Chưa có dữ liệu"
+                    android:textColor="#636E72"
+                    android:textSize="15sp" />
+            </ScrollView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
