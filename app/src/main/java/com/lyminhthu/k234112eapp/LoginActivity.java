@@ -17,6 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.lyminhthu.models.ListUserAccount;
+import com.lyminhthu.models.UserAccount;
+
 public class LoginActivity extends AppCompatActivity {
 /*
 Declare all variables for interactive views
@@ -51,6 +54,39 @@ Declare all variables for interactive views
         radEmployee=findViewById(R.id.radEmployee);
     }
     public void LoginSystem(View view) {
+        String username=EditUsername.getText().toString();
+        String password=EditPassword.getText().toString();
+        UserAccount uc = ListUserAccount.login(username, password);
+        if(uc!=null)
+        {
+            boolean saved = chkSaveLogin.isChecked();
+            SharedPreferences sharedPreferences = getSharedPreferences(name_share_pref, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("Username", username);
+            editor.putString("Password", password);
+            editor.putBoolean("Saved", saved);
+            editor.commit();
+
+            txtMessage.setText(getString(R.string.str_login_success));
+
+            if(radAdmin.isChecked()) {//dĩ nheeen phải kiểm tra account có quyền admin ko
+                //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, OrderManagementActivity.class);
+                intent.putExtra("USER_LOGIN", uc);
+                startActivity(intent);
+            }
+            else
+            {
+                Intent intent = new Intent(LoginActivity.this, EmployeeAdvancedManagementActivity.class);
+                startActivity(intent);
+            }
+        }
+        else
+        {
+            txtMessage.setText(getString(R.string.str_login_fail));
+        }
+    }
+    public void LoginSystemOld(View view) {
         String username=EditUsername.getText().toString();
         String password=EditPassword.getText().toString();
         if(username.equalsIgnoreCase("admin") &&

@@ -1,0 +1,180 @@
+@startuml
+class com.lyminhthu.models.Category {
+- String categoryid
+- String categoryname
+- String description
++ String getCategoryid()
++ void setCategoryid(String)
++ String getCategoryname()
++ void setCategoryname(String)
++ String getDescription()
++ void setDescription(String)
++ String toString()
+}
+
+
+class com.lyminhthu.models.OrderDetail {
+- String orderDetailId
+- String orderId
+- String productId
+- int quantity
+- double price
+- double coupon
+- double VAT
++ String getOrderDetailId()
++ void setOrderDetailId(String)
++ String getOrderId()
++ void setOrderId(String)
++ String getProductId()
++ void setProductId(String)
++ int getQuantity()
++ void setQuantity(int)
++ double getPrice()
++ void setPrice(double)
++ double getCoupon()
++ void setCoupon(double)
++ double getVAT()
++ void setVAT(double)
++ String toString()
+}
+
+
+class com.lyminhthu.models.Customer {
+- String cusId
+- String cusName
+- String birthday
+- String phone
+- String address
+- String email
++ String getCusId()
++ void setCusId(String)
++ String getCusName()
++ void setCusName(String)
++ String getBirthday()
++ void setBirthday(String)
++ String getPhone()
++ void setPhone(String)
++ String getAddress()
++ void setAddress(String)
++ String getEmail()
++ void setEmail(String)
++ String toString()
+}
+
+
+class com.lyminhthu.models.Employee {
+- String id
+- String name
+- String phone
+- String birthPlace
++ String getId()
++ void setId(String)
++ String getName()
++ void setName(String)
++ String getPhone()
++ void setPhone(String)
++ String getBirthPlace()
++ void setBirthPlace(String)
+}
+
+
+class com.lyminhthu.models.Order {
+- String orderId
+- String customerId
+- String employeeId
+- Date orderDate
++ String getOrderId()
++ void setOrderId(String)
++ String getCustomerId()
++ void setCustomerId(String)
++ String getEmployeeId()
++ void setEmployeeId(String)
++ Date getOrderDate()
++ void setOrderDate(Date)
++ String toString()
+}
+
+
+class com.lyminhthu.models.ListUserAccount {
++ {static} ArrayList<UserAccount> getUserAccounts()
++ {static} UserAccount login(String,String)
+}
+
+class com.lyminhthu.models.Product {
+- String productId
+- String productname
+- int quantity
+- double price
+- double coupon
+- double VAT
+- String cateId
++ String getProductId()
++ void setProductId(String)
++ String getProductname()
++ void setProductname(String)
++ int getQuantity()
++ void setQuantity(int)
++ double getPrice()
++ void setPrice(double)
++ double getCoupon()
++ void setCoupon(double)
++ double getVAT()
++ void setVAT(double)
++ String getCateId()
++ void setCateId(String)
++ String toString()
+}
+
+
+class com.lyminhthu.models.UserAccount {
+- String username
+- String password
+- String role
+- String displayName
+- boolean saved
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
++ String getRole()
++ void setRole(String)
++ String getDisplayName()
++ void setDisplayName(String)
++ boolean isSaved()
++ void setSaved(boolean)
++ String toString()
+}
+
+
+class com.lyminhthu.models.DataWareHouse {
++ {static} ArrayList<Category> getCategories()
++ {static} ArrayList<Product> getProducts()
++ {static} ArrayList<Employee> getEmployees()
++ {static} ArrayList<Customer> getCustomers()
++ {static} ArrayList<Order> getOrders()
+}
+
+class com.lyminhthu.models.Department {
+- String id
+- String name
+- ArrayList<Employee> ListEmployee
++ String getId()
++ void setId(String)
++ String getName()
++ void setName(String)
++ String toString()
++ void addEmployee(Employee)
++ void addListEmployee(ArrayList<Employee>)
++ ArrayList<Employee> getListEmployee()
+}
+
+
+
+
+java.io.Serializable <|.. com.lyminhthu.models.OrderDetail
+java.io.Serializable <|.. com.lyminhthu.models.Customer
+java.io.Serializable <|.. com.lyminhthu.models.Employee
+java.io.Serializable <|.. com.lyminhthu.models.Order
+java.io.Serializable <|.. com.lyminhthu.models.Product
+java.io.Serializable <|.. com.lyminhthu.models.UserAccount
+@enduml
